@@ -1,4 +1,6 @@
 
+document.addEventListener('DOMContentLoaded', () => {
+
 const galleryItems = [
   {
     preview:
@@ -82,7 +84,5 @@ const gallery = document.getElementById('gallery');
     });
     gallery.appendChild(img);
   });
+});
 
-
-
-  
