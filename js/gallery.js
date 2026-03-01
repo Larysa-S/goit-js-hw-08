@@ -85,4 +85,3 @@ const gallery = document.getElementById('gallery');
     gallery.appendChild(img);
   });
 });
-
