@@ -67,23 +67,39 @@ const galleryItems = [
   },
 ];
 
-
-const gallery = document.getElementById('gallery', () => { 
+const gallery = document.getElementById('gallery');
   
-  // Рендер галереї
-  galleryItems.forEach(item => {
-    const img = document.createElement('img');
-    img.src = item.preview;
-    img.alt = item.alt;
-    img.dataset.original = item.original;
-    img.addEventListener('click', () => {
-      const instance = basicLightbox.create(`
-        <img src="${item.original}" alt="${item.alt}" width="800">
-      `);
-      instance.show();
-    });
-    gallery.appendChild(img);
-  });
+  // Формуємо розмітку одним рядком
+  const markup = galleryItems.map(({ preview, original, description }) => `
+    <li class="gallery__item">
+      <a class="gallery__link" href="${original}">
+        <img
+          class="gallery__image"
+          src="${preview}"
+          data-source="${original}"
+          alt="${description}"
+        />
+      </a>
+    </li>
+  `).join('');
 
+  // Вставляємо в DOM одним разом
+  gallery.innerHTML = markup;
+
+  // Делегування подій
+  gallery.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const target = event.target;
+    if (target.nodeName !== 'IMG') return; // Перевірка, що клік по зображенню
+
+    const largeImageURL = target.dataset.source;
+    if (!largeImageURL) return; // Безпечний доступ
+
+    const instance = basicLightbox.create(`
+      <img src="${largeImageURL}" alt="${target.alt}" style="max-width:90%; max-height:80%;">
+    `);
+
+    instance.show();
+  });
 })
-});
