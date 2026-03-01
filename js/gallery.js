@@ -68,7 +68,7 @@ const galleryItems = [
 ];
 
 
-const gallery = document.getElementById('gallery');
+const gallery = document.getElementById('gallery', () => { 
   
   // Рендер галереї
   galleryItems.forEach(item => {
@@ -84,4 +84,6 @@ const gallery = document.getElementById('gallery');
     });
     gallery.appendChild(img);
   });
+
+})
 });
