@@ -1,0 +1,32 @@
+body {
+  margin-top: 24px;
+  margin-left: 156px;
+  margin-right: 156px;
+  background: #f4f4f4;
+  height:auto;
+  max-width: 1440px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 10px;
+  justify-items: left;
+  }
+
+.gallery img {
+  border: none;
+  width: 360px;
+  height: 200px;
+  cursor: pointer;
+  object-fit: cover; 
+  transition: transform 250ms ease-in-out;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    filter: brightness(80%);
+}
+  
+  
